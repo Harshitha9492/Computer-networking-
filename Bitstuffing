@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+void bitStuffing(char *input, char *output) {
+    int count = 0, j = 0;
+    for (int i = 0; input[i] != '\0'; i++) {
+        output[j++] = input[i];
+        if (input[i] == '1') count++;
+        else count = 0;
+        if (count == 5) {
+            output[j++] = '0'; // Insert a '0' after five consecutive '1's
+            count = 0;
+        }
+    }
+    output[j] = '\0'; // Null-terminate the output string
+}
+
+int main() {
+    char input[] = "111110111111000011111"; // Example input
+    char output[100]; // Output buffer
+    bitStuffing(input, output);
+    printf("Bit Stuffed Output: %s\n", output);
+    return 0;
+}
